@@ -3,11 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ContractApi.Models
 {
-    [Table("Contract")]
+    //[Table("crcontract")]
     public class Contracts
     {
         [Key]
-        public int ConId { get; set; }
+        public Guid Id { get; set; }
         public string FullName { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }

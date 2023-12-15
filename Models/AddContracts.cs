@@ -1,4 +1,4 @@
-﻿namespace ContractApi.Models
+﻿/*namespace ContractApi.Models
 {
     public class AddContracts
     {
@@ -8,3 +8,4 @@
         public string Address { get; set; }
     }
 }
+*/

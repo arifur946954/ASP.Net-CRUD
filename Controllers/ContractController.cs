@@ -18,9 +18,10 @@ namespace ContractApi.Controllers
         /* [HttpGet]
          public async Task<IActionResult> GetContracts()
          {
-           return  Ok(await dbContext.contracts.ToListAsync());
+             return Ok(await dbContext.contracts.ToListAsync());
 
          }*/
+        //chatgpt get 
 
         [HttpGet]
         public ActionResult<IEnumerable<Contracts>> GetContracts()
@@ -34,36 +35,37 @@ namespace ContractApi.Controllers
 
 
         //get single id
-     /*   [HttpGet]
-        [Route("{id:guid}")]
-        public async Task<IActionResult> FindSingleContract([FromRoute] int id)
-        {
-            var contract = await dbContext.contracts.FindAsync(id);
-            if (contract == null)
-            {
-                return NotFound();
-            }
-            return Ok(contract);
-        }*/
-        /*     [HttpPost]
-             public async Task<IActionResult>  AddContract(AddContracts addContracts)
+        /* [HttpGet]
+         [Route("{id:guid}")]
+         public async Task<IActionResult> FindSingleContract([FromRoute] Guid id)
+         {
+             var contract = await dbContext.contracts.FindAsync(id);
+             if (contract == null)
              {
-                 var contract = new Contracts()
-                 {
-                     Id = Guid.NewGuid(),
-                     FullName = addContracts.FullName,
-                     Email = addContracts.Email,
-                     Phone = addContracts.Phone,
-                     Address = addContracts.Address
+                 return NotFound();
+             }
+             return Ok(contract);
+         }*/
+        /*    [HttpPost]
+           // public async Task<IActionResult> AddContract(AddContracts addContracts)
+                public async Task<IActionResult> AddContract(Contracts addContracts)
+            {
+                var contract = new Contracts()
+                {
+                    Id = Guid.NewGuid(),
+                    FullName = addContracts.FullName,
+                    Email = addContracts.Email,
+                    Phone = addContracts.Phone,
+                    Address = addContracts.Address
 
-                 };
-                  await   dbContext.contracts.AddAsync(contract);
-                 await dbContext.SaveChangesAsync();
-                 return Ok(contract);
+                };
+                await dbContext.contracts.AddAsync(contract);
+                await dbContext.SaveChangesAsync();
+                return Ok(contract);
 
 
 
-             }*/
+            }*/
 
         //post mapping from chatGpt
         [HttpPost]
@@ -72,18 +74,18 @@ namespace ContractApi.Controllers
             dbContext.contracts.Add(contracts);
             dbContext.SaveChanges();
 
-            return CreatedAtAction(nameof(GetContracts), new { id = contracts.ConId }, contracts);
+            return CreatedAtAction(nameof(GetContracts), new { id = contracts.Id }, contracts);
         }
 
 
 
 
-     /*   [HttpPut]
+      /*  [HttpPut]
         [Route("{id:guid}")]
         //FromRoute==id comes from route, Guid=Tpe of id, id=inside route declear id;
-        public async Task<IActionResult> UpdateContract([FromRoute] int id,UpdateContractRequest updateContractRequest)
+        public async Task<IActionResult> UpdateContract([FromRoute] Guid id, UpdateContractRequest updateContractRequest)
         {
-          var contract= await dbContext.contracts.FindAsync(id);
+            var contract = await dbContext.contracts.FindAsync(id);
             if (contract != null)
             {
                 contract.FullName = updateContractRequest.FullName;
@@ -96,9 +98,9 @@ namespace ContractApi.Controllers
             return NotFound();
         }*/
 
-      /*  [HttpDelete]
+       /* [HttpDelete]
         [Route("{id:guid}")]
-        public async Task<IActionResult> DeleteContract([FromRoute] int id)
+        public async Task<IActionResult> DeleteContract([FromRoute] Guid id)
         {
             var contract = await dbContext.contracts.FindAsync(id);
             if (contract != null)
